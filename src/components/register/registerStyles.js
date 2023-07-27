@@ -45,7 +45,8 @@ export const useStyles = makeStyles({
         flexDirection: "column",
         // alignItems: "center",
         justifyContent: "space-evenly",
-        paddingBottom:"1em"
+        // paddingBottom:"1em",
+       
     },
 
     registrationBoxInputsBtn: {
@@ -55,5 +56,9 @@ export const useStyles = makeStyles({
             color: 'white', // Custom hover text color,
             boxShadow: "none",
         },
+        height:"3.5em",
+        width:"10em",
+        display:"flex",
+        alignSelf:"center",
     }
 });
