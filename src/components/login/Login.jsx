@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
 import { Box, Typography, TextField, Button } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import { useStyles } from './loginStyles'
+import { userLogin } from '../../services/admin'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const classes = useStyles()
-
+  const navigate = useNavigate()
   const [loginDetails, setLoginDetails] = useState({ email: "", password: "" })
+
+  const handleLogin = async () => {
+    let res = await userLogin(loginDetails)
+    if (res.status) {
+      navigate("/dashboard")
+    }
+    else toast.error(res)
+  }
 
   return (
     <>
@@ -21,7 +31,7 @@ const Login = () => {
             <Typography sx={{ display: "flex", justifyContent: "center", fontWeight: "bold" }}>LOGIN</Typography>
             <TextField type='email' id="Email" label="Email" variant="outlined" placeholder='Enter your email' onChange={(e) => setLoginDetails({ ...loginDetails, email: e.target.value })} />
             <TextField type='password' id="Password" label="Password" variant="outlined" placeholder='Enter your password' onChange={(e) => setLoginDetails({ ...loginDetails, password: e.target.value })} />
-            <Button variant="contained" className={classes.loginBoxInputsBtn}>Login</Button>
+            <Button variant="contained" className={classes.loginBoxInputsBtn} onClick={handleLogin}>Login</Button>
           </Box>
         </Box>
         <Typography>
