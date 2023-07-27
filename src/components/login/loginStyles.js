@@ -45,7 +45,7 @@ export const useStyles = makeStyles({
         flexDirection: "column",
         // alignItems: "center",
         justifyContent: "space-evenly",
-        paddingBottom: "2em"
+        // paddingBottom: "2em"
     },
 
     loginBoxInputsBtn: {
@@ -54,6 +54,11 @@ export const useStyles = makeStyles({
             backgroundColor: 'red', // Custom hover color
             color: 'white', // Custom hover text color,
             boxShadow: "none",
+            
         },
+        height:"3.5em",
+        width:"10em",
+        display:"flex",
+        alignSelf:"center",
     }
 });

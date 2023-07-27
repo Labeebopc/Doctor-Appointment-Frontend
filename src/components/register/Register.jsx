@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Typography, TextField, Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
@@ -6,6 +6,8 @@ import { useStyles } from './registerStyles'
 
 const Register = () => {
   const classes = useStyles()
+
+  const [registrationDetails, setRegistrationDetails] = useState({ name: "", email: "", password: "" })
 
   return (
     <>
@@ -17,9 +19,9 @@ const Register = () => {
 
           <Box component="section" className={classes.registrationBoxInputs}>
             <Typography sx={{ display: "flex", justifyContent: "center", fontWeight: "bold" }}>CREATE NEW ACCOUNT</Typography>
-            <TextField id="Name" label="Name" variant="outlined" placeholder='Enter your name' />
-            <TextField id="Email" label="Email" variant="outlined" placeholder='Enter your email' />
-            <TextField id="Password" label="Password" variant="outlined" placeholder='Enter your password' />
+            <TextField type='text' id="Name" label="Name" variant="outlined" placeholder='Enter your name' onChange={(e) => setRegistrationDetails({ ...registrationDetails, name: e.target.value })} />
+            <TextField type='email' id="Email" label="Email" variant="outlined" placeholder='Enter your email' onChange={(e) => setRegistrationDetails({ ...registrationDetails, email: e.target.value })} />
+            <TextField type='password' id="Password" label="Password" variant="outlined" placeholder='Enter your password' onChange={(e) => setRegistrationDetails({ ...registrationDetails, password: e.target.value })} />
             <Button variant="contained" className={classes.registrationBoxInputsBtn}>Register</Button>
           </Box>
         </Box>
