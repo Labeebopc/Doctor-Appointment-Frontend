@@ -5,16 +5,22 @@ import Logo from '../../assets/logo.png'
 import { useStyles } from './loginStyles'
 import { userLogin } from '../../services/admin'
 import { toast } from 'react-toastify'
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { setUser } from '../../store/reducers/userSlice'
 
 const Login = () => {
   const classes = useStyles()
   const navigate = useNavigate()
+  const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = useState({ email: "", password: "" })
 
   const handleLogin = async () => {
     let res = await userLogin(loginDetails)
     if (res.status) {
-      navigate("/dashboard")
+      dispatch(setUser(res))
+      Cookies.set("user", JSON.stringify(res));
+      navigate("/")
     }
     else toast.error(res)
   }

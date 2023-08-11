@@ -14,7 +14,6 @@ const Register = () => {
 
   const handleRegister = async () => {
     let res = await userRegistration(registrationDetails)
-    console.log(res)
     if (res.status) {
       toast.success(res.message)
       navigate("/login")
