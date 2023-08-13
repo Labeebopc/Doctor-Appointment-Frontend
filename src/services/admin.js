@@ -46,3 +46,17 @@ export const applyDoctor = async (token, datas) => {
         return error.response.data.message;
     }
 };
+
+
+export const getAllNotification = async (token, id) => {
+    try {
+      const { data } = await axios.get(`${host}/admin/get_all_notification/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  };

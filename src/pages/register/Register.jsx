@@ -13,11 +13,17 @@ const Register = () => {
   const [registrationDetails, setRegistrationDetails] = useState({ name: "", email: "", password: "" })
 
   const handleRegister = async () => {
-    let res = await userRegistration(registrationDetails)
-    if (res.status) {
-      toast.success(res.message)
-      navigate("/login")
+    if (registrationDetails.email === "" || registrationDetails.password === "" || registrationDetails.name === "") {
+      toast.error("Please enter name, email and password!")
     }
+    else {
+      let res = await userRegistration(registrationDetails)
+      if (res?.status) {
+        toast.success(res.message)
+        navigate("/login")
+      }
+    }
+
   }
 
   return (
@@ -30,9 +36,12 @@ const Register = () => {
 
           <Box component="section" className={classes.registrationBoxInputs}>
             <Typography sx={{ display: "flex", justifyContent: "center", fontWeight: "bold" }}>CREATE NEW ACCOUNT</Typography>
-            <TextField type='text' id="Name" label="Name" variant="outlined" placeholder='Enter your name' onChange={(e) => setRegistrationDetails({ ...registrationDetails, name: e.target.value })} />
-            <TextField type='email' id="Email" label="Email" variant="outlined" placeholder='Enter your email' onChange={(e) => setRegistrationDetails({ ...registrationDetails, email: e.target.value })} />
-            <TextField type='password' id="Password" label="Password" variant="outlined" placeholder='Enter your password' onChange={(e) => setRegistrationDetails({ ...registrationDetails, password: e.target.value })} />
+            <TextField type='text' id="Name" label="Name" variant="outlined" placeholder='Enter your name' 
+            onChange={(e) => setRegistrationDetails({ ...registrationDetails, name: e.target.value })} required/>
+            <TextField type='email' id="Email" label="Email" variant="outlined" placeholder='Enter your email' 
+            onChange={(e) => setRegistrationDetails({ ...registrationDetails, email: e.target.value })} required />
+            <TextField type='password' id="Password" label="Password" variant="outlined" placeholder='Enter your password' 
+            onChange={(e) => setRegistrationDetails({ ...registrationDetails, password: e.target.value })} required/>
             <Button variant="contained" className={classes.registrationBoxInputsBtn} onClick={handleRegister}>Register</Button>
           </Box>
         </Box>

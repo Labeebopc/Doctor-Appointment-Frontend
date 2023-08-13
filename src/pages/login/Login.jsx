@@ -16,13 +16,22 @@ const Login = () => {
   const [loginDetails, setLoginDetails] = useState({ email: "", password: "" })
 
   const handleLogin = async () => {
-    let res = await userLogin(loginDetails)
-    if (res.status) {
-      dispatch(setUser(res))
-      Cookies.set("user", JSON.stringify(res));
-      navigate("/")
+    if (loginDetails.email === "" || loginDetails.password === "") {
+      toast.error("Please enter email and password!")
     }
-    else toast.error(res)
+    else {
+      let res = await userLogin(loginDetails)
+      if (res.status) {
+        dispatch(setUser(res))
+        Cookies.set("user", JSON.stringify(res));
+        
+        await res?.existingUser?.isAdmin ? navigate("/admin") : navigate("/user")
+        // navigate("/")
+        // console.log(res,"res")
+      }
+      else toast.error(res)
+    }
+
   }
 
   return (
@@ -35,8 +44,10 @@ const Login = () => {
 
           <Box component="section" className={classes.loginBoxInputs}>
             <Typography sx={{ display: "flex", justifyContent: "center", fontWeight: "bold" }}>LOGIN</Typography>
-            <TextField type='email' id="Email" label="Email" variant="outlined" placeholder='Enter your email' onChange={(e) => setLoginDetails({ ...loginDetails, email: e.target.value })} />
-            <TextField type='password' id="Password" label="Password" variant="outlined" placeholder='Enter your password' onChange={(e) => setLoginDetails({ ...loginDetails, password: e.target.value })} />
+            <TextField type='email' id="Email" label="Email" variant="outlined" placeholder='Enter your email' 
+            onChange={(e) => setLoginDetails({ ...loginDetails, email: e.target.value })} required />
+            <TextField type='password' id="Password" label="Password" variant="outlined" placeholder='Enter your password' 
+            onChange={(e) => setLoginDetails({ ...loginDetails, password: e.target.value })} required />
             <Button variant="contained" className={classes.loginBoxInputsBtn} onClick={handleLogin}>Login</Button>
           </Box>
         </Box>

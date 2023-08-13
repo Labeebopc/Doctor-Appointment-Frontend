@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useStyles } from './navbarStyles'
-import { Box, Typography, TextField, Button } from '@mui/material'
-import Logo from '../../assets/logo.png'
+import { Box, Typography, TextField, Button, Modal, MenuItem, Menu, Badge, IconButton } from '@mui/material'
+// import Logo from '../../assets/logo.png'
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
-import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import { setUser } from '../../store/reducers/userSlice';
 import { toast } from 'react-toastify';
-import Badge from '@mui/material/Badge';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import { getAllNotification } from '../../services/admin';
+import { NotificationModal } from '../admin/notification-modal/NotificationModal';
 
 export const Navbar = () => {
     const { user } = useSelector(state => state.user)
@@ -22,6 +20,16 @@ export const Navbar = () => {
     const navigate = useNavigate()
 
     const [anchorEl, setAnchorEl] = useState(null);
+    const [notification, setNotification] = useState([])
+    const [openNotificationModal, setOpenNotificationModal] = useState(false)
+
+    const handleOpenNotificationModal = () => setOpenNotificationModal(true);
+    const handleCloseNotificationModal = () => setOpenNotificationModal(false);
+
+
+    useEffect(() => {
+        allNotifications()
+    }, [])
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -38,17 +46,36 @@ export const Navbar = () => {
         navigate("/login");
     };
 
+    const allNotifications = async () => {
+        let res = await getAllNotification(user.token, user.existingUser._id)
+        console.log(res.notification, "notifi")
+        setNotification(res.notification)
+    }
+
     return (
         <>
             <Box component="section" className={classes.navbarContainer}>
+                {
+                    openNotificationModal &&
+                    <NotificationModal
+                        handleOpenNotificationModal={handleOpenNotificationModal}
+                        handleCloseNotificationModal={handleCloseNotificationModal}
+                        notification={notification}
+                    />
+                }
                 <Box component="article" sx={{ fontSize: "1.3em" }}>
                     {/* <img className={classes.NavbarLogoImg} src={Logo} alt="Appoinment_logo" /> */}
                     Logo
                 </Box>
                 <Box component="article" sx={{ fontSize: "1.3em", display: "flex", alignItems: "center" }}>
-                    <Badge sx={{marginRight:"18px"}} badgeContent={4} color="error">
-                        <NotificationsNoneIcon color="action" />      
-                    </Badge>
+                    {
+                        user.existingUser.isAdmin && <>
+                            <Badge sx={{ marginRight: "18px" }} badgeContent={notification?.length} color="error">
+                                <NotificationsNoneIcon sx={{ cursor: "pointer" }} onClick={handleOpenNotificationModal} color="action" />
+                            </Badge>
+                        </>
+                    }
+
 
                     <Typography>{user?.existingUser?.name}</Typography>
                     <IconButton
