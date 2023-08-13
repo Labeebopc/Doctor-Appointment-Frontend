@@ -18,9 +18,9 @@ import { Appointment } from './components/user/appointment/Appointment';
 import { Profile } from './components/user/profile/Profile';
 import { UserSettings } from './components/user/settings/UserSettings';
 import { UserHome } from './components/user/home/UserHome';
-import { AdminHome } from './components/admin/home/AdminHome';
 import { AdminSettings } from './components/admin/settings/AdminSettings';
 import { Users } from './components/admin/users/Users';
+import { AdminHome } from './components/admin/home/AdminHome';
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
 
-    if(location.pathname === "/"){
+    if (location.pathname === "/") {
       navigate("/login")
     }
     else if (location.pathname === "/" && user?.existingUser?.isAdmin) {
