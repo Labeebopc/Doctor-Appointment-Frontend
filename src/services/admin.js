@@ -60,3 +60,42 @@ export const getAllNotification = async (token, id) => {
       return error.response.data.message;
     }
   };
+
+  export const getAllUsers = async (token) => {
+    try {
+      const { data } = await axios.get(`${host}/admin/get_all_users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  };
+
+  export const getAllDoctors = async (token) => {
+    try {
+      const { data } = await axios.get(`${host}/admin/get_all_doctors`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  };
+
+  export const deleteDoctor = async (token, id) => {
+    try {
+      const { data } = await axios.delete(`${host}/admin/delete_doctor/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  };

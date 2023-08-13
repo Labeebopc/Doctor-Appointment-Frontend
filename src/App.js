@@ -33,7 +33,9 @@ function App() {
     if (location.pathname === "/" && user?.existingUser?.isAdmin) {
       navigate("/admin")
     }
-    else navigate("/user")
+    else if (location.pathname === "/" && !user?.existingUser?.isAdmin) {
+      navigate("/user")
+    }
   }, [location.pathname === "/"])
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStyles } from './adminhomeStyles'
+import { useStyles } from './adminHomeStyles'
 import { Box, Typography, TextField, Button } from '@mui/material'
 
 export const AdminHome = () => {

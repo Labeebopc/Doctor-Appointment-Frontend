@@ -22,7 +22,7 @@ export const NotificationModal = ({
                         <Box component="section" className={classes.notificationMessageBox} >
                             {
                                 notification?.map((notifi, index) => (
-                                    <Paper component="section" className={classes.notificationMessage} elevation={3}>
+                                    <Paper component="section" className={classes.notificationMessage} elevation={3} >
                                         <Typography sx={{paddingLeft:"10px"}}>
                                             {notifi.message}
                                         </Typography>
