@@ -47,7 +47,7 @@ export const Navbar = () => {
     };
 
     const allNotifications = async () => {
-        let res = await getAllNotification(user.token, user.existingUser._id)
+        let res = await getAllNotification(user?.token, user?.existingUser._id)
         // console.log(res.notification, "notifi")
         setNotification(res.notification)
     }
@@ -69,7 +69,7 @@ export const Navbar = () => {
                 </Box>
                 <Box component="article" className={classes.navbarLastChild}>
                     {
-                        user.existingUser.isAdmin && <>
+                        user?.existingUser?.isAdmin && <>
                             <Badge sx={{ marginRight: "18px", cursor: "pointer" }} badgeContent={notification?.length} color="error" onClick={handleOpenNotificationModal}>
                                 <NotificationsNoneIcon sx={{ cursor: "pointer" }} onClick={handleOpenNotificationModal} color="action" />
                             </Badge>

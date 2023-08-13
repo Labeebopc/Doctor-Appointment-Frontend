@@ -30,13 +30,16 @@ function App() {
 
   useEffect(() => {
 
-    if (location.pathname === "/" && user?.existingUser?.isAdmin) {
+    if(location.pathname === "/"){
+      navigate("/login")
+    }
+    else if (location.pathname === "/" && user?.existingUser?.isAdmin) {
       navigate("/admin")
     }
     else if (location.pathname === "/" && !user?.existingUser?.isAdmin) {
       navigate("/user")
     }
-  }, [location.pathname === "/"])
+  }, [])
 
   return (
     <>
