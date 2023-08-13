@@ -28,7 +28,10 @@ export const Navbar = () => {
 
 
     useEffect(() => {
-        allNotifications()
+        if (user?.existingUser.isAdmin) {
+            allNotifications()
+        }
+
     }, [])
 
     const handleMenu = (event) => {
