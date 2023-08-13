@@ -60,7 +60,6 @@ function App() {
               <Route exact path='/user/settings' element={<UserSettings />} />
 
               <Route exact path='/admin' element={<AdminHome />} />
-              {/* <Route exact path='/admin/profile' element={<Dashboard />} /> */}
               <Route exact path='/admin/settings' element={<AdminSettings />} />
               <Route exact path='/admin/doctors' element={<Doctors />} />
               <Route exact path='/admin/users' element={<Users />} />
