@@ -48,7 +48,7 @@ export const Navbar = () => {
 
     const allNotifications = async () => {
         let res = await getAllNotification(user.token, user.existingUser._id)
-        console.log(res.notification, "notifi")
+        // console.log(res.notification, "notifi")
         setNotification(res.notification)
     }
 
@@ -67,10 +67,10 @@ export const Navbar = () => {
                     {/* <img className={classes.NavbarLogoImg} src={Logo} alt="Appoinment_logo" /> */}
                     Logo
                 </Box>
-                <Box component="article" sx={{ fontSize: "1.3em", display: "flex", alignItems: "center" }}>
+                <Box component="article" className={classes.navbarLastChild}>
                     {
                         user.existingUser.isAdmin && <>
-                            <Badge sx={{ marginRight: "18px" }} badgeContent={notification?.length} color="error">
+                            <Badge sx={{ marginRight: "18px", cursor: "pointer" }} badgeContent={notification?.length} color="error" onClick={handleOpenNotificationModal}>
                                 <NotificationsNoneIcon sx={{ cursor: "pointer" }} onClick={handleOpenNotificationModal} color="action" />
                             </Badge>
                         </>

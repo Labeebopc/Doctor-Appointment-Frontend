@@ -20,4 +20,10 @@ export const useStyles = makeStyles({
         height: "100%",
         padding: "0.4em"
     },
+
+    navbarLastChild:{
+        fontSize: "1.3em", 
+        display: "flex", 
+        alignItems: "center" 
+    }
 });
