@@ -19,29 +19,29 @@ export const Sidebar = () => {
     const sidebarUserMenu = [
         {
             name: "Home",
-            path: "/",
+            path: "/user",
             icon: HomeIcon
         },
 
         {
             name: "Appointment",
-            path: "/appointment",
+            path: "/user/appointment",
             icon: ListIcon
         }
         ,
         {
             name: "Apply Doctor",
-            path: "/applydoctor",
+            path: "/user/applydoctor",
             icon: MedicalServicesIcon
         },
         {
             name: "Profile",
-            path: "/profile",
+            path: "/user/profile",
             icon: PersonIcon
         },
         {
             name: "Settings",
-            path: "/settings",
+            path: "/user/settings",
             icon: SettingsIcon
         }
     
@@ -51,23 +51,23 @@ export const Sidebar = () => {
     const sidebarAdminMenu = [
         {
             name: "Home",
-            path: "/",
+            path: "/admin",
             icon: HomeIcon
         }
         ,
         {
             name: "Doctors",
-            path: "/doctors",
+            path: "/admin/doctors",
             icon: MedicalServicesIcon
         },
         {
             name: "Users",
-            path: "/users",
+            path: "/admin/users",
             icon: PersonIcon
         },
         {
             name: "Settings",
-            path: "/settings",
+            path: "/admin/settings",
             icon: SettingsIcon
         }
     ]

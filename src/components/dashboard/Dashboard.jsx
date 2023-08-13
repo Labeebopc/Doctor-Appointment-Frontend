@@ -7,7 +7,7 @@ export const Dashboard = () => {
     return (
         <>
             <Box component="section" className={classes.dashboardContainer}>
-                hhhh
+                Work in progress !!
             </Box>
         </>
     )
