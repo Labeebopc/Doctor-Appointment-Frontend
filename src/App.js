@@ -20,7 +20,7 @@ import { UserSettings } from './components/user/settings/UserSettings';
 import { UserHome } from './components/user/home/UserHome';
 import { AdminSettings } from './components/admin/settings/AdminSettings';
 import { Users } from './components/admin/users/Users';
-import { AdminHome } from './components/admin/home/AdminHome';
+// import { AdminHome } from './components/admin/home/AdminHome';
 
 
 function App() {
@@ -59,7 +59,7 @@ function App() {
               <Route exact path='/user/profile' element={<Profile />} />
               <Route exact path='/user/settings' element={<UserSettings />} />
 
-              <Route exact path='/admin' element={<AdminHome />} />
+              <Route exact path='/admin' element={<UserHome />} />
               <Route exact path='/admin/settings' element={<AdminSettings />} />
               <Route exact path='/admin/doctors' element={<Doctors />} />
               <Route exact path='/admin/users' element={<Users />} />
