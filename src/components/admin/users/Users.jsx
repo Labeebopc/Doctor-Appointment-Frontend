@@ -48,7 +48,7 @@ export const Users = () => {
                                             <TableCell align="left">{user.name}</TableCell>
                                             <TableCell align="center">{user.email}</TableCell>
                                             <TableCell align="center">{user.isDoctor ? "Yes" : "No"}</TableCell>
-                                            <TableCell align="center">Coming soon</TableCell>
+                                            <TableCell align="center">N/A</TableCell>
                                         </TableRow>
                                     ))
                                 }

@@ -21,32 +21,6 @@ export const userLogin = async (datas) => {
   }
 };
 
-export const getUserData = async (token) => {
-  try {
-    const { data } = await axios.post(`${host}/user/get_user_data`, {}, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return data;
-  } catch (error) {
-    return error.response.data.message;
-  }
-};
-
-export const applyDoctor = async (token, datas) => {
-  try {
-    const { data } = await axios.post(`${host}/user/apply_doctor`, datas, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return data;
-  } catch (error) {
-    return error.response.data.message;
-  }
-};
-
 
 export const getAllNotification = async (token, id) => {
   try {
@@ -101,9 +75,9 @@ export const deleteDoctor = async (token, id) => {
 };
 
 
-export const changeConfirmationStatus = async (token, id, confirmation) => {
+export const changeConfirmationStatus = async (token, id, confirmationStats, userId) => {
   try {
-    const { data } = await axios.patch(`${host}/admin/change_confirmation_status/${id}`, {confirmation}, {
+    const { data } = await axios.patch(`${host}/admin/change_confirmation_status/${id}`, { confirmationStats, userId }, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

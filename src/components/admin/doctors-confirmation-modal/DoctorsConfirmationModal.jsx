@@ -18,9 +18,12 @@ export const DoctorsConfirmationModal = ({
     // console.log(clickedDoctor)
 
     const updateConfirmationStatus = async (btn) => {
-        let res = await changeConfirmationStatus(user.token, user.existingUser._id, btn)
-        // console.log(res)
-        //return res
+        let res = await changeConfirmationStatus(user.token, clickedDoctor._id, btn, user.existingUser._id)
+        if (res.status) {
+            toast.success(res.message)
+            allDoctors()
+            handleCloseDoctorsConfirmationModal()
+        }
     }
 
     const handleConfirmation = async (confirmationBtn) => {
@@ -32,17 +35,17 @@ export const DoctorsConfirmationModal = ({
             toast.error("This doctor is already accepted")
         }
 
-        else if (clickedDoctor.confirmation === "Accepted" && (confirmationBtn === "Rejected")) {
-            toast.success("This doctor rejected")
-            await updateConfirmationStatus(confirmationBtn)
-            allDoctors()
-            handleCloseDoctorsConfirmationModal()
-        }
+        // else if (clickedDoctor.confirmation === "Accepted" && (confirmationBtn === "Rejected")) {
+        //     // toast.success("This doctor is rejected")
+        //     updateConfirmationStatus(confirmationBtn)
+        //     // allDoctors()
+        //     // handleCloseDoctorsConfirmationModal()
+        // }
         else {
-            toast.success(`This doctor successfully ${confirmationBtn}`)
-            await updateConfirmationStatus(confirmationBtn)
-            allDoctors()
-            handleCloseDoctorsConfirmationModal()
+            // toast.success(`Doctor confirmation updated`)
+            updateConfirmationStatus(confirmationBtn)
+            // allDoctors()
+            // handleCloseDoctorsConfirmationModal()
         }
     }
     return (

@@ -14,7 +14,7 @@ import { SetSidebar } from './components/sidebar/SetSidebar';
 import { Doctors } from './components/admin/doctors/Doctors';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { Appointment } from './components/user/appointment/Appointment';
+import { NewAppointment } from './components/user/new-appointment/NewAppointment';
 import { Profile } from './components/user/profile/Profile';
 import { UserSettings } from './components/user/settings/UserSettings';
 import { UserHome } from './components/user/home/UserHome';
@@ -39,6 +39,7 @@ function App() {
     else if (location.pathname === "/" && !user?.existingUser?.isAdmin) {
       navigate("/user")
     }
+    // else navigate("/user")
   }, [])
 
   return (
@@ -54,10 +55,12 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoute />} >
               <Route exact path='/user' element={<UserHome />} />
-              <Route exact path='/user/appointment' element={<Appointment />} />
+              <Route exact path='/user/appointment' element={<NewAppointment />} />
               <Route exact path='/user/applydoctor' element={<ApplyDoctor />} />
               <Route exact path='/user/profile' element={<Profile />} />
               <Route exact path='/user/settings' element={<UserSettings />} />
+
+              <Route exact path='/doctor/profile/:id' element={<Profile />} />
 
               <Route exact path='/admin' element={<UserHome />} />
               <Route exact path='/admin/settings' element={<AdminSettings />} />

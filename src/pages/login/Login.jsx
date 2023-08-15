@@ -24,10 +24,9 @@ const Login = () => {
       if (res.status) {
         dispatch(setUser(res))
         Cookies.set("user", JSON.stringify(res));
-        
+
+        // await res?.existingUser?.isAdmin ? navigate("/admin") : res?.existingUser?.isDoctor ? navigate("/doctor") : navigate("/user")
         await res?.existingUser?.isAdmin ? navigate("/admin") : navigate("/user")
-        // navigate("/")
-        // console.log(res,"res")
       }
       else toast.error(res)
     }
@@ -44,10 +43,10 @@ const Login = () => {
 
           <Box component="section" className={classes.loginBoxInputs}>
             <Typography sx={{ display: "flex", justifyContent: "center", fontWeight: "bold" }}>LOGIN</Typography>
-            <TextField type='email' id="Email" label="Email" variant="outlined" placeholder='Enter your email' 
-            onChange={(e) => setLoginDetails({ ...loginDetails, email: e.target.value })} required />
-            <TextField type='password' id="Password" label="Password" variant="outlined" placeholder='Enter your password' 
-            onChange={(e) => setLoginDetails({ ...loginDetails, password: e.target.value })} required />
+            <TextField type='email' id="Email" label="Email" variant="outlined" placeholder='Enter your email'
+              onChange={(e) => setLoginDetails({ ...loginDetails, email: e.target.value })} required />
+            <TextField type='password' id="Password" label="Password" variant="outlined" placeholder='Enter your password'
+              onChange={(e) => setLoginDetails({ ...loginDetails, password: e.target.value })} required />
             <Button variant="contained" className={classes.loginBoxInputsBtn} onClick={handleLogin}>Login</Button>
           </Box>
         </Box>
