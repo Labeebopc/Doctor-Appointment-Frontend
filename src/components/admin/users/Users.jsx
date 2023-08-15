@@ -9,6 +9,8 @@ export const Users = () => {
 
     const { user } = useSelector(state => state.user)
     const [users, setUsers] = useState([])
+    const [query, setQuery] = useState("")
+    const keys = ["name"];
 
     useEffect(() => {
         allUsers()
@@ -24,7 +26,7 @@ export const Users = () => {
             <Box component="section" className={classes.usersContainer}>
                 <Typography component="h2" sx={{ fontSize: "1.5em", fontWeight: "bold", textAlign: "center" }}>Users</Typography>
                 <Box component="section" className={classes.usersSearchSection}>
-                    <TextField size='small' id="outlined-basic" label="Search" variant="outlined" />
+                    <TextField size='small' onChange={(e) => setQuery(e.target.value)} id="outlined-basic" label="Search" variant="outlined" />
                 </Box>
                 <Box component="section" className={classes.usersTableSection}>
                     <TableContainer>
@@ -39,13 +41,15 @@ export const Users = () => {
                             </TableHead>
                             <TableBody>
                                 {
-                                    users?.map(user=>(
+                                    users?.filter((user) =>
+                                        keys.some((key) => user[key]?.toLowerCase()?.includes(query))
+                                    ).map(user => (
                                         <TableRow>
-                                        <TableCell align="left">{user.name}</TableCell>
-                                        <TableCell align="center">{user.email}</TableCell>
-                                        <TableCell align="center">{user.isDoctor? "Yes" :"No"}</TableCell>
-                                        <TableCell align="center">Coming soon</TableCell>
-                                    </TableRow>
+                                            <TableCell align="left">{user.name}</TableCell>
+                                            <TableCell align="center">{user.email}</TableCell>
+                                            <TableCell align="center">{user.isDoctor ? "Yes" : "No"}</TableCell>
+                                            <TableCell align="center">Coming soon</TableCell>
+                                        </TableRow>
                                     ))
                                 }
                             </TableBody>
