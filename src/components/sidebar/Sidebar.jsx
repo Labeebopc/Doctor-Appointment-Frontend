@@ -76,7 +76,7 @@ export const Sidebar = () => {
     const sidebarDoctorMenu = [
         {
             name: "Home",
-            path: "/user",
+            path: "/doctor",
             icon: HomeIcon
         },
 

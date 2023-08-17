@@ -25,8 +25,8 @@ const Login = () => {
         dispatch(setUser(res))
         Cookies.set("user", JSON.stringify(res));
 
-        // await res?.existingUser?.isAdmin ? navigate("/admin") : res?.existingUser?.isDoctor ? navigate("/doctor") : navigate("/user")
-        await res?.existingUser?.isAdmin ? navigate("/admin") : navigate("/user")
+        await res?.existingUser?.isAdmin ? navigate("/admin") : res?.existingUser?.isDoctor ? navigate("/doctor") : navigate("/user")
+        // await res?.existingUser?.isAdmin ? navigate("/admin") : navigate("/user")
       }
       else toast.error(res)
     }

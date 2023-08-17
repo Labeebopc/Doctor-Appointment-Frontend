@@ -33,9 +33,9 @@ export const ApplyDoctor = () => {
     }
 
     const handleSubmit = async () => {
-        if (applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "" ||
-            applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "" ||
-            applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "") {
+        if (applyDoctorDetails.firstName === "" || applyDoctorDetails.lastName === "" || applyDoctorDetails.phone === "" ||
+            applyDoctorDetails.email === "" || applyDoctorDetails.password === "" || applyDoctorDetails.specialization === "" ||
+            applyDoctorDetails.consultationFee === "") {
             toast.error("Please fill all mandotary fields!")
         }
         else {

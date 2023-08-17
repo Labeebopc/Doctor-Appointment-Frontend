@@ -28,3 +28,16 @@ export const getUserData = async (token) => {
       return error.response.data.message;
     }
   };
+
+  export const getAllDoctors = async (token) => {
+    try {
+      const { data } = await axios.get(`${host}/user/get_all_doctors`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  };
