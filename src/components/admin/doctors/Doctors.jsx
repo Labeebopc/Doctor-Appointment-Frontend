@@ -12,6 +12,8 @@ export const Doctors = () => {
     const classes = useStyles()
     const { user } = useSelector(state => state.user)
     const [doctors, setDoctors] = useState([])
+    const [query, setQuery] = useState("")
+    const keys = ["firstName", "lastName"];
     const [openDoctorsConfirmationModal, setOpenDoctorsConfirmationModal] = useState(false)
     const [clickedDoctor, setClickedDoctor] = useState([])
 
@@ -56,7 +58,7 @@ export const Doctors = () => {
                 }
                 <Typography component="h2" sx={{ fontSize: "1.5em", fontWeight: "bold", textAlign: "center" }}>All Doctors</Typography>
                 <Box component="section" className={classes.doctorsSearchSection}>
-                    <TextField size='small' id="outlined-basic" label="Search" variant="outlined" />
+                    <TextField size='small' onChange={(e) => setQuery(e.target.value)} id="outlined-basic" label="Search" variant="outlined" />
                 </Box>
                 <Box component="section" className={classes.doctorsTableSection}>
                     <TableContainer>
@@ -72,7 +74,9 @@ export const Doctors = () => {
                             </TableHead>
                             <TableBody>
                                 {
-                                    doctors?.map(doctor => (
+                                    doctors?.filter((doctor) =>
+                                        keys.some((key) => doctor[key]?.toLowerCase()?.includes(query))
+                                    ).map(doctor => (
                                         <TableRow>
                                             <TableCell align="left">{`${doctor.firstName} ${doctor.lastName}`}</TableCell>
                                             <TableCell align="center">{doctor.email}</TableCell>

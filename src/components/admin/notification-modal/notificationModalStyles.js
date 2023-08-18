@@ -19,10 +19,10 @@ export const useStyles = makeStyles({
 
     notificationMessageBox: {
         marginBottom: "1em",
-        maxHeight:"20em",
+        maxHeight: "20em",
         overflowY: "auto",
         "&::-webkit-scrollbar": {
-          display: "none", // Hide scrollbar
+            display: "none", // Hide scrollbar
         },
     },
 

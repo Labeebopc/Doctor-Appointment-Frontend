@@ -1,7 +1,10 @@
 import React from 'react'
 import { useStyles } from './doctorsConfirmationModalStyles'
-import { Box, Typography, TextField, Button, Modal, MenuItem, Menu, Paper, IconButton } from '@mui/material'
+import { Box, Typography, TextField, Button, Modal, Paper } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { toast } from 'react-toastify';
+import { changeConfirmationStatus } from '../../../services/admin';
+import { useSelector } from 'react-redux';
 
 export const DoctorsConfirmationModal = ({
     handleOpenDoctorsConfirmationModal,
@@ -11,13 +14,39 @@ export const DoctorsConfirmationModal = ({
     doctors
 }) => {
     const classes = useStyles()
+    const { user } = useSelector(state => state.user)
     // console.log(clickedDoctor)
 
+    const updateConfirmationStatus = async (btn) => {
+        let res = await changeConfirmationStatus(user.token, clickedDoctor._id, btn, user.existingUser._id)
+        if (res.status) {
+            toast.success(res.message)
+            allDoctors()
+            handleCloseDoctorsConfirmationModal()
+        }
+    }
+
     const handleConfirmation = async (confirmationBtn) => {
-        
-        console.log(confirmationBtn)
-        allDoctors()
-        handleCloseDoctorsConfirmationModal()
+        if (clickedDoctor.confirmation === "Rejected" && (confirmationBtn === "Accepted" || confirmationBtn === "Rejected")) {
+            toast.error("This doctor is already rejected")
+        }
+
+        else if (clickedDoctor.confirmation === "Accepted" && (confirmationBtn === "Accepted")) {
+            toast.error("This doctor is already accepted")
+        }
+
+        // else if (clickedDoctor.confirmation === "Accepted" && (confirmationBtn === "Rejected")) {
+        //     // toast.success("This doctor is rejected")
+        //     updateConfirmationStatus(confirmationBtn)
+        //     // allDoctors()
+        //     // handleCloseDoctorsConfirmationModal()
+        // }
+        else {
+            // toast.success(`Doctor confirmation updated`)
+            updateConfirmationStatus(confirmationBtn)
+            // allDoctors()
+            // handleCloseDoctorsConfirmationModal()
+        }
     }
     return (
         <>

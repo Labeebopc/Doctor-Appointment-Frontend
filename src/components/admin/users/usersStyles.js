@@ -19,7 +19,7 @@ export const useStyles = makeStyles({
         },
     },
 
-    usersTableHead:{
-        fontWeight:"bold"
+    usersTableHead: {
+        fontWeight: "bold"
     }
 });

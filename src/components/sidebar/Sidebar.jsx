@@ -4,14 +4,14 @@ import HomeIcon from '@mui/icons-material/Home';
 import ListIcon from '@mui/icons-material/List';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
+// import LogoutIcon from '@mui/icons-material/Logout';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import { Link, useLocation } from 'react-router-dom';
-import { Box, Typography, TextField, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import { useSelector } from 'react-redux';
 
 export const Sidebar = () => {
-    const {user}=useSelector(state=>state.user)
+    const { user } = useSelector(state => state.user)
     const classes = useStyles()
     const location = useLocation()
 
@@ -44,7 +44,7 @@ export const Sidebar = () => {
             path: "/user/settings",
             icon: SettingsIcon
         }
-    
+
     ]
 
     //Admin menu
@@ -72,8 +72,34 @@ export const Sidebar = () => {
         }
     ]
 
-    const sidebarMenu= user?.existingUser?.isAdmin ? sidebarAdminMenu : sidebarUserMenu
-    
+    //Doctor menu
+    const sidebarDoctorMenu = [
+        {
+            name: "Home",
+            path: "/doctor",
+            icon: HomeIcon
+        },
+
+        {
+            name: "Appointments",
+            path: "/doctor/appointments",
+            icon: ListIcon
+        },
+        {
+            name: "Profile",
+            path: `/doctor/profile/${user?.existingUser?._id}`,
+            icon: PersonIcon
+        },
+        {
+            name: "Settings",
+            path: "/doctor/settings",
+            icon: SettingsIcon
+        }
+
+    ]
+
+    const sidebarMenu = user?.existingUser?.isAdmin ? sidebarAdminMenu : user?.existingUser?.isDoctor ? sidebarDoctorMenu : sidebarUserMenu
+
     return (
         <>
             <Box component="section" className={classes.sidebarContainer}>

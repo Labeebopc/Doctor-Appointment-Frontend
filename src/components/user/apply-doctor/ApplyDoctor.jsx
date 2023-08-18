@@ -4,7 +4,7 @@ import { Box, Typography, TextField, Button } from '@mui/material'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { SingleInputTimeRangeField } from '@mui/x-date-pickers-pro/SingleInputTimeRangeField';
-import { applyDoctor } from '../../../services/admin';
+import { applyDoctor } from '../../../services/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -33,9 +33,9 @@ export const ApplyDoctor = () => {
     }
 
     const handleSubmit = async () => {
-        if (applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "" ||
-            applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "" ||
-            applyDoctorDetails.firstName === "" || applyDoctorDetails.firstName === "") {
+        if (applyDoctorDetails.firstName === "" || applyDoctorDetails.lastName === "" || applyDoctorDetails.phone === "" ||
+            applyDoctorDetails.email === "" || applyDoctorDetails.password === "" || applyDoctorDetails.specialization === "" ||
+            applyDoctorDetails.consultationFee === "") {
             toast.error("Please fill all mandotary fields!")
         }
         else {
