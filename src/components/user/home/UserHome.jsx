@@ -17,7 +17,7 @@ export const UserHome = () => {
 
     const allDocs = async () => {
         let res = await getAllDoctors(user.token)
-        setDoctors(res.allDoctors)
+        setDoctors(res?.allDoctors)
         // console.log(res.allDoctors, "alldoc")
     }
     return (

@@ -55,7 +55,7 @@ export const Profile = () => {
         }
         else {
             let res = await updateDoctorProfile(user.token, { ...editDoctorDetails, userId: user.existingUser._id })
-            console.log(res)
+            console.log(res,"res")
             if (res?.status) {
                 toast.success(res?.message)
                 setEditDoctorDetails({
@@ -101,38 +101,38 @@ export const Profile = () => {
                     <Box component="article" className={classes.formRows}>
                         <TextField type='text' className={classes.inputs} label="First Name" variant="outlined"
                             onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, firstName: e.target.value })} required
-                            value={editDoctorDetails.firstName} />
+                            value={editDoctorDetails?editDoctorDetails.firstName :""} />
                         <TextField type='text' className={classes.inputs} label="Last Name" variant="outlined"
                             onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, lastName: e.target.value })} required
-                            value={editDoctorDetails.lastName} />
+                            value={editDoctorDetails?editDoctorDetails.lastName:""} />
                     </Box>
 
                     <Box component="article" className={classes.formRows}>
                         <TextField className={classes.inputs} label="Phone" variant="outlined"
                             onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, phone: e.target.value })} required
-                            value={editDoctorDetails.phone} />
+                            value={editDoctorDetails?editDoctorDetails.phone:""} />
                         <TextField type='email' className={classes.inputs} label="Email" variant="outlined"
                             onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, email: e.target.value })} required
-                            value={editDoctorDetails.email} />
+                            value={editDoctorDetails?editDoctorDetails.email:""} />
                     </Box>
 
                     <Box component="article" className={classes.formRows}>
                         <TextField type='password' className={classes.inputs} label="Password" variant="outlined"
                             onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, password: e.target.value })} required
-                            value={editDoctorDetails.password} />
+                            value={editDoctorDetails?editDoctorDetails.password:""} />
                         <TextField type='text' className={classes.inputs} label="Address" variant="outlined"
                             onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, address: e.target.value })}
-                            value={editDoctorDetails.address} />
+                            value={editDoctorDetails?editDoctorDetails.address:""} />
                     </Box>
 
                     <Box component="article" className={classes.formRows}>
                         <TextField type='text' className={classes.inputs} label="Specialization" variant="outlined"
                             onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, specialization: e.target.value })} required
-                            value={editDoctorDetails.specialization} />
+                            value={editDoctorDetails?editDoctorDetails.specialization:""} />
                         <TextField className={classes.inputs} label="Consultation Fee" variant="outlined"
                             onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, consultationFee: e.target.value })}
                             required inputProps={{ min: 0 }}
-                            value={editDoctorDetails.consultationFee} />
+                            value={editDoctorDetails?editDoctorDetails.consultationFee:""} />
                     </Box>
                     <Box component="article" className={classes.formRows}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>

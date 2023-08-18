@@ -41,3 +41,16 @@ export const getUserData = async (token) => {
       return error.response.data.message;
     }
   };
+
+  export const bookNewAppointment = async (token, datas) => {
+    try {
+      const { data } = await axios.post(`${host}/user/book_new_appointment`,datas, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  };

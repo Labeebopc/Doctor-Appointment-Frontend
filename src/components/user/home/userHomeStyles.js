@@ -18,7 +18,8 @@ export const useStyles = makeStyles({
         },
         display:"flex",
         gap:"10px",
-        flexWrap:"wrap"
+        flexWrap:"wrap",
+        alignContent: "flex-start",
         // display:"grid",
         // gridTemplateColumns:"repeat(3, 1fr)",
     }
