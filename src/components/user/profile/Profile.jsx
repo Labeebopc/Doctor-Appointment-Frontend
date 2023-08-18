@@ -55,7 +55,7 @@ export const Profile = () => {
         }
         else {
             let res = await updateDoctorProfile(user.token, { ...editDoctorDetails, userId: user.existingUser._id })
-            console.log(res,"res")
+            console.log(res, "res")
             if (res?.status) {
                 toast.success(res?.message)
                 setEditDoctorDetails({
@@ -97,58 +97,74 @@ export const Profile = () => {
             <Box component="section" className={classes.profileContainer}>
                 <Typography component="h2" sx={{ fontSize: "1.5em", fontWeight: "bold", textAlign: "center" }}>Profile</Typography>
 
-                <Box component="form" autoComplete="off" className={classes.form}>
-                    <Box component="article" className={classes.formRows}>
-                        <TextField type='text' className={classes.inputs} label="First Name" variant="outlined"
-                            onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, firstName: e.target.value })} required
-                            value={editDoctorDetails?editDoctorDetails.firstName :""} />
-                        <TextField type='text' className={classes.inputs} label="Last Name" variant="outlined"
-                            onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, lastName: e.target.value })} required
-                            value={editDoctorDetails?editDoctorDetails.lastName:""} />
-                    </Box>
+                {
+                    doctor ? (
+                        <>
 
-                    <Box component="article" className={classes.formRows}>
-                        <TextField className={classes.inputs} label="Phone" variant="outlined"
-                            onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, phone: e.target.value })} required
-                            value={editDoctorDetails?editDoctorDetails.phone:""} />
-                        <TextField type='email' className={classes.inputs} label="Email" variant="outlined"
-                            onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, email: e.target.value })} required
-                            value={editDoctorDetails?editDoctorDetails.email:""} />
-                    </Box>
+                            <Box component="form" autoComplete="off" className={classes.form}>
+                                <Box component="article" className={classes.formRows}>
+                                    <TextField type='text' className={classes.inputs} label="First Name" variant="outlined"
+                                        onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, firstName: e.target.value })} required
+                                        value={editDoctorDetails ? editDoctorDetails.firstName : ""} />
+                                    <TextField type='text' className={classes.inputs} label="Last Name" variant="outlined"
+                                        onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, lastName: e.target.value })} required
+                                        value={editDoctorDetails ? editDoctorDetails.lastName : ""} />
+                                </Box>
 
-                    <Box component="article" className={classes.formRows}>
-                        <TextField type='password' className={classes.inputs} label="Password" variant="outlined"
-                            onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, password: e.target.value })} required
-                            value={editDoctorDetails?editDoctorDetails.password:""} />
-                        <TextField type='text' className={classes.inputs} label="Address" variant="outlined"
-                            onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, address: e.target.value })}
-                            value={editDoctorDetails?editDoctorDetails.address:""} />
-                    </Box>
+                                <Box component="article" className={classes.formRows}>
+                                    <TextField className={classes.inputs} label="Phone" variant="outlined"
+                                        onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, phone: e.target.value })} required
+                                        value={editDoctorDetails ? editDoctorDetails.phone : ""} />
+                                    <TextField type='email' className={classes.inputs} label="Email" variant="outlined"
+                                        onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, email: e.target.value })} required
+                                        value={editDoctorDetails ? editDoctorDetails.email : ""} />
+                                </Box>
 
-                    <Box component="article" className={classes.formRows}>
-                        <TextField type='text' className={classes.inputs} label="Specialization" variant="outlined"
-                            onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, specialization: e.target.value })} required
-                            value={editDoctorDetails?editDoctorDetails.specialization:""} />
-                        <TextField className={classes.inputs} label="Consultation Fee" variant="outlined"
-                            onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, consultationFee: e.target.value })}
-                            required inputProps={{ min: 0 }}
-                            value={editDoctorDetails?editDoctorDetails.consultationFee:""} />
-                    </Box>
-                    <Box component="article" className={classes.formRows}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <SingleInputTimeRangeField
-                                label="From - To"
-                                // value={}
-                                onChange={(e) => handleTimingChange(e)} // Pass the onChange event handler to the component
-                            />
-                        </LocalizationProvider>
+                                <Box component="article" className={classes.formRows}>
+                                    <TextField type='password' className={classes.inputs} label="Password" variant="outlined"
+                                        onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, password: e.target.value })} required
+                                        value={editDoctorDetails ? editDoctorDetails.password : ""} />
+                                    <TextField type='text' className={classes.inputs} label="Address" variant="outlined"
+                                        onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, address: e.target.value })}
+                                        value={editDoctorDetails ? editDoctorDetails.address : ""} />
+                                </Box>
 
-                    </Box>
-                </Box>
-                <Box component="section" className={classes.buttonSection} >
-                    <Button variant="outlined" className={classes.button} onClick={handleResetBtn}>Reset</Button>
-                    <Button variant="contained" className={classes.button} onClick={handleUpdateBtn} >Update</Button>
-                </Box>
+                                <Box component="article" className={classes.formRows}>
+                                    <TextField type='text' className={classes.inputs} label="Specialization" variant="outlined"
+                                        onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, specialization: e.target.value })} required
+                                        value={editDoctorDetails ? editDoctorDetails.specialization : ""} />
+                                    <TextField className={classes.inputs} label="Consultation Fee" variant="outlined"
+                                        onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, consultationFee: e.target.value })}
+                                        required inputProps={{ min: 0 }}
+                                        value={editDoctorDetails ? editDoctorDetails.consultationFee : ""} />
+                                </Box>
+                                <Box component="article" className={classes.formRows}>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <SingleInputTimeRangeField
+                                            label="From - To"
+                                            // value={}
+                                            onChange={(e) => handleTimingChange(e)} // Pass the onChange event handler to the component
+                                        />
+                                    </LocalizationProvider>
+
+                                </Box>
+                            </Box>
+                            <Box component="section" className={classes.buttonSection} >
+                                <Button variant="outlined" className={classes.button} onClick={handleResetBtn}>Reset</Button>
+                                <Button variant="contained" className={classes.button} onClick={handleUpdateBtn} >Update</Button>
+                            </Box>
+                        </>
+                    ) :
+
+                        <>
+                            {
+                                <Box className={classes.profileErrorContainer}>
+                                    <Typography sx={{ color: "red", fontSize: "1em", fontWeight: "bold" }}>Sorry.... This page is only availabe for Doctors</Typography>
+                                </Box>
+                            }
+                        </>
+                }
+
             </Box>
         </>
     )

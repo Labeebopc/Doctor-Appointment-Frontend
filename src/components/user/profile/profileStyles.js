@@ -33,5 +33,10 @@ export const useStyles = makeStyles({
     button: {
         width: "150px",
         height: "50px",
+    },
+
+    profileErrorContainer: {
+        marginTop: "2em",
+        textAlign: "center"
     }
 });

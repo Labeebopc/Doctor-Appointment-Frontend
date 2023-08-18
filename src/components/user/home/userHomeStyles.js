@@ -16,9 +16,9 @@ export const useStyles = makeStyles({
         "&::-webkit-scrollbar": {
             display: "none", // Hide scrollbar
         },
-        display:"flex",
-        gap:"10px",
-        flexWrap:"wrap",
+        display: "flex",
+        gap: "10px",
+        flexWrap: "wrap",
         alignContent: "flex-start",
         // display:"grid",
         // gridTemplateColumns:"repeat(3, 1fr)",

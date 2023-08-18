@@ -19,23 +19,23 @@ export const useStyles = makeStyles({
 
     doctorConfirmationModalSection: {
         marginBottom: "1em",
-        maxHeight:"27em",
+        maxHeight: "27em",
         overflowY: "auto",
         "&::-webkit-scrollbar": {
-          display: "none", // Hide scrollbar
+            display: "none", // Hide scrollbar
         },
     },
 
-    doctorConfirmationModalSectionRow:{
-        padding:"10px",
-        display:"flex",
-        justifyContent:"space-between"
+    doctorConfirmationModalSectionRow: {
+        padding: "10px",
+        display: "flex",
+        justifyContent: "space-between"
     },
 
-    doctorConfirmationModalSectionBtn:{
-        padding:"10px",
-        display:"flex",
-        justifyContent:"space-around"
+    doctorConfirmationModalSectionBtn: {
+        padding: "10px",
+        display: "flex",
+        justifyContent: "space-around"
     },
 
 });

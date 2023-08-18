@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStyles } from './doctorsConfirmationModalStyles'
-import { Box, Typography, TextField, Button, Modal, MenuItem, Menu, Paper, IconButton } from '@mui/material'
+import { Box, Typography, TextField, Button, Modal, Paper } from '@mui/material'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { toast } from 'react-toastify';
 import { changeConfirmationStatus } from '../../../services/admin';

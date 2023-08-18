@@ -33,14 +33,14 @@ export const useStyles = makeStyles({
 
     },
 
-    sidebarMenuItemsLinkActive:{
+    sidebarMenuItemsLinkActive: {
         display: "flex",
         alignItems: "center",
         gap: "10px",
         textDecoration: "none",
         height: "3em",
         paddingLeft: "1.5em",
-        color:"white",
-        background:"red"
+        color: "white",
+        background: "red"
     }
 });

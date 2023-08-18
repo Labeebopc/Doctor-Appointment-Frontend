@@ -4,10 +4,10 @@ import HomeIcon from '@mui/icons-material/Home';
 import ListIcon from '@mui/icons-material/List';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
+// import LogoutIcon from '@mui/icons-material/Logout';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import { Link, useLocation } from 'react-router-dom';
-import { Box, Typography, TextField, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import { useSelector } from 'react-redux';
 
 export const Sidebar = () => {

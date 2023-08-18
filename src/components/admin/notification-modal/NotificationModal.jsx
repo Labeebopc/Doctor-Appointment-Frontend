@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStyles } from './notificationModalStyles'
-import { Box, Typography, TextField, Button, Modal, MenuItem, Menu, Paper, IconButton } from '@mui/material'
+import { Box, Typography, Button, Modal, Paper } from '@mui/material'
 
 export const NotificationModal = ({
     handleOpenNotificationModal,
@@ -23,7 +23,7 @@ export const NotificationModal = ({
                             {
                                 notification?.map((notifi, index) => (
                                     <Paper component="section" className={classes.notificationMessage} elevation={3} >
-                                        <Typography sx={{paddingLeft:"10px"}}>
+                                        <Typography sx={{ paddingLeft: "10px" }}>
                                             {notifi.message}
                                         </Typography>
 

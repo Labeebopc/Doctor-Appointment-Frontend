@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useStyles } from './userHomeStyles'
-import { Box, Typography, TextField, Button } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { getAllDoctors } from '../../../services/user'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { DoctorList } from '../doctor-list/DoctorList';
 
 export const UserHome = () => {

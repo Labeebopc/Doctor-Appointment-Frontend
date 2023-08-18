@@ -18,7 +18,7 @@ const host = process.env.REACT_APP_BACKEND_URL;
 /////////////////////////////////// POST METHOD //////////////////////////////////////
 export const getDoctorInfo = async (token, id) => {
     try {
-        const { data } = await axios.post(`${host}/doctor/get_doctor_info`,{id} , {
+        const { data } = await axios.post(`${host}/doctor/get_doctor_info`, { id }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -31,7 +31,7 @@ export const getDoctorInfo = async (token, id) => {
 
 export const updateDoctorProfile = async (token, datas) => {
     try {
-        const { data } = await axios.post(`${host}/doctor/update_doctor_profile`,{datas} , {
+        const { data } = await axios.post(`${host}/doctor/update_doctor_profile`, { datas }, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

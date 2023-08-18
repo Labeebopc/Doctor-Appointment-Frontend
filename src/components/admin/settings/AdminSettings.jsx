@@ -7,7 +7,7 @@ export const AdminSettings = () => {
     return (
         <>
             <Box component="section" className={classes.settingsContainer}>
-            <Typography component="h2" sx={{ fontSize: "1.5em", fontWeight: "bold", textAlign: "center" }}>Settings</Typography>
+                <Typography component="h2" sx={{ fontSize: "1.5em", fontWeight: "bold", textAlign: "center" }}>Settings</Typography>
             </Box>
         </>
     )

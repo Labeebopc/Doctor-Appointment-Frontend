@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useStyles } from './navbarStyles'
-import { Box, Typography, TextField, Button, Modal, MenuItem, Menu, Badge, IconButton } from '@mui/material'
+import { Box, Typography, MenuItem, Menu, Badge, IconButton } from '@mui/material'
 // import Logo from '../../assets/logo.png'
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
