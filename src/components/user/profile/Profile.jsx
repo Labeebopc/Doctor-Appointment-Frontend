@@ -8,27 +8,28 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { SingleInputTimeRangeField } from '@mui/x-date-pickers-pro/SingleInputTimeRangeField';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { setDoctorInfo } from '../../../store/reducers/doctorSlice';
 
 
 
 export const Profile = () => {
     const classes = useStyles()
-    const { user } = useSelector(state => state.user)
+    const { user, doctorInfo } = useSelector(state => state)
     const params = useParams()
-
-    const [doctor, setDoctor] = useState("")
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        doctorInfo()
+        doctorDetail()
     }, [])
 
-    const doctorInfo = async () => {
+    const [doctor, setDoctor] = useState(doctorInfo.doctorInfo)
+
+    const doctorDetail = async () => {
         let res = await getDoctorInfo(user.token, params.id)
+        dispatch(setDoctorInfo(res.doctor))
         setDoctor(res.doctor)
         // console.log(res, "info")
     }
-    console.log(user.token)
-    const dispatch = useDispatch()
 
     const [editDoctorDetails, setEditDoctorDetails] = useState({
         firstName: doctor?.firstName,
@@ -49,28 +50,29 @@ export const Profile = () => {
 
     const handleUpdateBtn = async () => {
         if (editDoctorDetails.firstName === "" || editDoctorDetails.lastName === "" || editDoctorDetails.phone === "" ||
-            editDoctorDetails.email === "" || editDoctorDetails.password === "" || editDoctorDetails.specialization === "" ||
+            editDoctorDetails.email === "" || editDoctorDetails.specialization === "" ||
             editDoctorDetails.consultationFee === "") {
             toast.error("Please fill all mandotary fields!")
         }
         else {
-            let res = await updateDoctorProfile(user.token, { ...editDoctorDetails, userId: user.existingUser._id })
+            let res = await updateDoctorProfile(user.token, { ...editDoctorDetails, userId: user.user.existingUser._id, _id: doctorInfo.doctorInfo._id })
             console.log(res, "res")
             if (res?.status) {
                 toast.success(res?.message)
                 setEditDoctorDetails({
-                    firstName: doctor?.firstName,
-                    lastName: doctor?.lastName,
-                    phone: doctor?.phone,
-                    email: doctor?.email,
-                    password: doctor?.password,
-                    address: doctor?.address,
-                    specialization: doctor?.specialization,
-                    consultationFee: doctor?.consultationFee,
-                    timing: doctor?.timing
+                    firstName: res?.updatedDoc?.firstName,
+                    lastName: res?.updatedDoc?.lastName,
+                    phone: res?.updatedDoc?.phone,
+                    email: res?.updatedDoc?.email,
+                    password: res?.updatedDoc?.password,
+                    address: res?.updatedDoc?.address,
+                    specialization: res?.updatedDoc?.specialization,
+                    consultationFee: res?.updatedDoc?.consultationFee,
+                    timing: res?.updatedDoc?.timing
                 })
-
-                doctorInfo()
+                dispatch(setDoctorInfo(res.updatedDoc))
+                setDoctor(res.updatedDoc)
+                // doctorDetail()
             }
             else {
                 toast.error(res)
@@ -105,38 +107,38 @@ export const Profile = () => {
                                 <Box component="article" className={classes.formRows}>
                                     <TextField type='text' className={classes.inputs} label="First Name" variant="outlined"
                                         onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, firstName: e.target.value })} required
-                                        value={editDoctorDetails ? editDoctorDetails.firstName : ""} />
+                                        defaultValue={doctor ? doctor.firstName : ""} />
                                     <TextField type='text' className={classes.inputs} label="Last Name" variant="outlined"
                                         onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, lastName: e.target.value })} required
-                                        value={editDoctorDetails ? editDoctorDetails.lastName : ""} />
+                                        defaultValue={doctor ? doctor.lastName : ""} />
                                 </Box>
 
                                 <Box component="article" className={classes.formRows}>
                                     <TextField className={classes.inputs} label="Phone" variant="outlined"
                                         onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, phone: e.target.value })} required
-                                        value={editDoctorDetails ? editDoctorDetails.phone : ""} />
+                                        defaultValue={doctor ? doctor.phone : ""} />
                                     <TextField type='email' className={classes.inputs} label="Email" variant="outlined"
                                         onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, email: e.target.value })} required
-                                        value={editDoctorDetails ? editDoctorDetails.email : ""} />
+                                        defaultValue={doctor ? doctor.email : ""} />
                                 </Box>
 
                                 <Box component="article" className={classes.formRows}>
-                                    <TextField type='password' className={classes.inputs} label="Password" variant="outlined"
+                                    <TextField disabled type='password' className={classes.inputs} label="Password" variant="outlined"
                                         onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, password: e.target.value })} required
-                                        value={editDoctorDetails ? editDoctorDetails.password : ""} />
+                                        defaultValue={doctor ? doctor.password : ""} />
                                     <TextField type='text' className={classes.inputs} label="Address" variant="outlined"
                                         onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, address: e.target.value })}
-                                        value={editDoctorDetails ? editDoctorDetails.address : ""} />
+                                        defaultValue={doctor ? doctor.address : ""} />
                                 </Box>
 
                                 <Box component="article" className={classes.formRows}>
                                     <TextField type='text' className={classes.inputs} label="Specialization" variant="outlined"
                                         onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, specialization: e.target.value })} required
-                                        value={editDoctorDetails ? editDoctorDetails.specialization : ""} />
+                                        defaultValue={doctor ? doctor.specialization : ""} />
                                     <TextField className={classes.inputs} label="Consultation Fee" variant="outlined"
                                         onChange={(e) => setEditDoctorDetails({ ...editDoctorDetails, consultationFee: e.target.value })}
                                         required inputProps={{ min: 0 }}
-                                        value={editDoctorDetails ? editDoctorDetails.consultationFee : ""} />
+                                        defaultValue={doctor ? doctor.consultationFee : ""} />
                                 </Box>
                                 <Box component="article" className={classes.formRows}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>

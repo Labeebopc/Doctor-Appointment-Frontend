@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Typography, TextField, Button } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
@@ -12,7 +12,7 @@ import { setUser } from '../../store/reducers/userSlice'
 const Login = () => {
   const classes = useStyles()
   const navigate = useNavigate()
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const [loginDetails, setLoginDetails] = useState({ email: "", password: "" })
 
   const handleLogin = async () => {
@@ -32,6 +32,7 @@ const Login = () => {
     }
 
   }
+
 
   return (
     <>
