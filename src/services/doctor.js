@@ -31,7 +31,7 @@ export const getDoctorInfo = async (token, id) => {
 
 export const updateDoctorProfile = async (token, datas) => {
     try {
-        const { data } = await axios.post(`${host}/doctor/update_doctor_profile`, { datas }, {
+        const { data } = await axios.post(`${host}/doctor/update_doctor_profile`,datas , {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
